@@ -100,12 +100,26 @@
 	pinctrl-0 = <&pinctrl_ecspi1_1>;
 	status = "okay";
 
-	flash: m25p80@0 {
+	flash: n25q032@0 {
 		#address-cells = <1>;
 		#size-cells = <1>;
-		compatible = "st,m25p32";
+		compatible = "st,n25q032";
 		spi-max-frequency = <20000000>;
 		reg = <0>;
+		partition@0 {
+			label = "U-Boot";
+			reg = <0x0 0xC0000>;
+			read-only;
+		};
+		partition@C0000 {
+			label = "env";
+			reg = <0xC0000 0x10000>;
+			read-only;
+		};
+		partition@D0000 {
+			label = "spare";
+			reg = <0xD0000 0x130000>;
+		};
 	};
 };
 
