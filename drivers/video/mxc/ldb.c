@@ -146,6 +146,7 @@ static struct fb_videomode ldb_modedb[] = {
 	 0,
 	 FB_VMODE_NONINTERLACED,
 	 FB_MODE_IS_DETAILED,},
+#if 0
 	{
 	 "LDB-XGA", 60, 1024, 768, 15385,
 	 220, 40,
@@ -156,6 +157,15 @@ static struct fb_videomode ldb_modedb[] = {
 	 FB_MODE_IS_DETAILED,},
 	{
 	 "LDB-1080P60", 60, 1920, 1080, 7692,
+	 100, 40,
+	 30, 3,
+	 10, 2,
+	 0,
+	 FB_VMODE_NONINTERLACED,
+	 FB_MODE_IS_DETAILED,},
+#endif
+	{
+	 "SHARP-LQ156M1LG21", 60, 1920, 1080, 7851,
 	 100, 40,
 	 30, 3,
 	 10, 2,
