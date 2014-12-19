@@ -516,6 +516,19 @@ static void __init imx6q_init_late(void)
 	if (of_machine_is_compatible("fsl,imx6q-sabreauto")
 		|| of_machine_is_compatible("fsl,imx6dl-sabreauto"))
 		imx6q_flexcan_fixup_auto();
+
+#define MX6Q_BA16_LCD_PWR_EN	IMX_GPIO_NR(3, 22)
+#define MX6Q_BA16_BL_OUT_EN	IMX_GPIO_NR(4, 15)
+
+	if (of_machine_is_compatible("fsl,mx6q-ba16")) {
+		// power on LCD
+		gpio_request(MX6Q_BA16_LCD_PWR_EN, "LCD_PWR_EN");
+		gpio_direction_output(MX6Q_BA16_LCD_PWR_EN, 1);
+
+		// power on backlight
+		gpio_request(MX6Q_BA16_BL_OUT_EN, "LCD_EN_BK");
+		gpio_direction_output(MX6Q_BA16_BL_OUT_EN, 1);
+	}
 }
 
 static void __init imx6q_map_io(void)
