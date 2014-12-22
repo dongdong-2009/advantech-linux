@@ -196,6 +196,15 @@
         pinctrl-names = "default";
         pinctrl-0 = <&pinctrl_i2c3_2>;
         status = "okay";
+
+
+	rtc@32 {
+		compatible = "epson,rx8010";
+		reg = <0x32>;
+		interrupt-parent = <&gpio4>;
+		interrupts = <10>;
+		rx8010-irq_1 = <&gpio4 10 0>;
+	};
 };
 
 &iomuxc {
@@ -231,6 +240,7 @@
 				MX6QDL_PAD_GPIO_19__GPIO4_IO05   0x80000000	/* AR8033 Interrupt */
 				MX6QDL_PAD_KEY_ROW4__GPIO4_IO15  0x80000000	/* BLEN_OUT */
 				MX6QDL_PAD_EIM_D22__GPIO3_IO22   0x80000000	/* LVDS_PPEN_OUT */
+				MX6QDL_PAD_KEY_COL2__GPIO4_IO10  0x80000000	/* RTC_INT */
 			>;
 		};
 	};
