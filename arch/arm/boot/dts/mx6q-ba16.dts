@@ -105,7 +105,6 @@
 		compatible = "fsl,mxc_sdc_fb";
 		disp_dev = "ldb";
 		interface_pix_fmt = "RGB24";
-		mode_str = "SHARP-LQ156M1LG21";
 		default_bpp = <32>;
 		int_clk = <0>;
 		late_init = <0>;
@@ -515,12 +514,13 @@
 };
 
 &ldb {
-	fsl,dual-channel;
+	split-mode;
 	status = "okay";
 
 	lvds-channel@0 {
 		fsl,data-mapping = "spwg";
 		fsl,data-width = <24>;
+		crtc = "ipu2-di0";
 		status = "okay";
 
 		display-timings {
