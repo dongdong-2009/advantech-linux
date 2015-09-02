@@ -525,9 +525,9 @@ static int imx6_pcie_init_phy(struct pcie_port *pp)
 		regmap_update_bits(imx6_pcie->iomuxc_gpr, IOMUXC_GPR8,
 				IMX6Q_GPR8_TX_DEEMPH_GEN2_6DB, 20 << 12);
 		regmap_update_bits(imx6_pcie->iomuxc_gpr, IOMUXC_GPR8,
-				IMX6Q_GPR8_TX_SWING_FULL, 115 << 18);
+				IMX6Q_GPR8_TX_SWING_FULL, 103 << 18);
 		regmap_update_bits(imx6_pcie->iomuxc_gpr, IOMUXC_GPR8,
-				IMX6Q_GPR8_TX_SWING_LOW, 115 << 25);
+				IMX6Q_GPR8_TX_SWING_LOW, 103 << 25);
 	}
 
 	return 0;
