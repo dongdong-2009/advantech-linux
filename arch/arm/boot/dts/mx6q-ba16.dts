@@ -91,21 +91,20 @@
 
 	mxcfb1: fb@0 {
 		compatible = "fsl,mxc_sdc_fb";
-		disp_dev = "hdmi";
+		disp_dev = "ldb";
 		interface_pix_fmt = "RGB24";
-		mode_str ="1920x1080M@60";
-		default_bpp = <32>;
+		default_bpp = <16>;
 		int_clk = <0>;
 		late_init = <0>;
 		status = "okay";
 	};
 
-
 	mxcfb2: fb@1 {
 		compatible = "fsl,mxc_sdc_fb";
-		disp_dev = "ldb";
+		disp_dev = "hdmi";
 		interface_pix_fmt = "RGB24";
-		default_bpp = <32>;
+		mode_str ="1920x1080M@60";
+		default_bpp = <24>;
 		int_clk = <0>;
 		late_init = <0>;
 		status = "okay";
@@ -141,6 +140,7 @@
 				     240 241 242 243 244 245 246 247 248 249
 				     250 251 252 253 254 255>;
 		default-brightness-level = <255>;
+		enable-gpios = <&gpio1 0 GPIO_ACTIVE_HIGH>;
 	};
 
 	v4l2_out {
@@ -153,6 +153,11 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_audmux_4>;
 	status = "okay";
+};
+
+&clks {
+	fsl,ldb-di0-parent = <&clks IMX6QDL_CLK_PLL2_PFD0_352M>;
+	fsl,ldb-di1-parent = <&clks IMX6QDL_CLK_PLL2_PFD0_352M>;
 };
 
 &ecspi1 {
@@ -216,6 +221,19 @@
 	pu-supply = <&reg_pu>;
 };
 
+&dcic1 {
+	dcic_id = <0>;
+	dcic_mux = "dcic-hdmi";
+	status = "okay";
+};
+
+&dcic2 {
+	dcic_id = <1>;
+	dcic_mux = "dcic-lvds1";
+	status = "okay";
+};
+
+
 &gpc {
 	fsl,cpu_pupscr_sw2iso = <0xf>;
 	fsl,cpu_pupscr_sw = <0xf>;
@@ -237,8 +255,8 @@
 };
 
 &hdmi_core {
-	ipu_id = <0>;
-	disp_id = <1>;
+	ipu_id = <1>;
+	disp_id = <0>;
 	status = "okay";
 };
 
@@ -425,7 +443,6 @@
 				MX6QDL_PAD_EIM_EB2__GPIO2_IO30   0x80000000	/* SPI1 CS */
 				MX6QDL_PAD_GPIO_17__GPIO7_IO12   0x80000000	/* PCIe Reset */
 				MX6QDL_PAD_GPIO_5__GPIO1_IO05    0x80000000	/* PCIe Wake */
-				MX6QDL_PAD_GPIO_0__CCM_CLKO1    0x130b0		/* FEC CLK */
 				MX6QDL_PAD_ENET_TX_EN__GPIO1_IO28 0x80000000	/* FEC Reset */
 				MX6QDL_PAD_NANDF_D0__GPIO2_IO00 0x80000000	/* GPIO0 */
 				MX6QDL_PAD_NANDF_D1__GPIO2_IO01 0x80000000	/* GPIO1 */
@@ -441,7 +458,7 @@
 				MX6QDL_PAD_GPIO_16__GPIO7_IO11   0x80000000	/* HUB_RESET */
 				MX6QDL_PAD_GPIO_18__GPIO7_IO13   0x80000000	/* PMIC Interrupt */
 				MX6QDL_PAD_GPIO_19__GPIO4_IO05   0x80000000	/* AR8033 Interrupt */
-				MX6QDL_PAD_KEY_ROW4__GPIO4_IO15  0x80000000	/* BLEN_OUT */
+				MX6QDL_PAD_GPIO_0__GPIO1_IO00  0x80000000	/* BLEN_OUT */
 				MX6QDL_PAD_EIM_D22__GPIO3_IO22   0x80000000	/* LVDS_PPEN_OUT */
 				MX6QDL_PAD_KEY_COL2__GPIO4_IO10  0x80000000	/* RTC_INT */
 			>;
@@ -640,7 +657,7 @@
 	lvds-channel@0 {
 		fsl,data-mapping = "spwg";
 		fsl,data-width = <24>;
-		crtc = "ipu2-di0";
+		crtc = "ipu1-di0";
 		status = "okay";
 
 		display-timings {
@@ -657,6 +674,10 @@
 				vsync-len = <2>;
 			};
 		};
+	};
+
+	lvds-channel@1 {
+		status = "disabled";
 	};
 };
 
