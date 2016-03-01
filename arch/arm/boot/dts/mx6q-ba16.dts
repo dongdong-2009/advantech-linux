@@ -307,43 +307,43 @@
 
 		regulators {
 			bcore1 {
-				regulator-min-microvolt = <300000>;
-				regulator-max-microvolt = <1530000>;
+				regulator-min-microvolt = <1420000>;
+				regulator-max-microvolt = <1420000>;
 				regulator-always-on;
 				regulator-boot-on;
 			};
 
 			bcore2 {
-				regulator-min-microvolt = <300000>;
-				regulator-max-microvolt = <1530000>;
+				regulator-min-microvolt = <1420000>;
+				regulator-max-microvolt = <1420000>;
 				regulator-always-on;
 				regulator-boot-on;
 			};
 
 			bpro {
-				regulator-min-microvolt = <530000>;
-				regulator-max-microvolt = <1800000>;
+				regulator-min-microvolt = <1500000>;
+				regulator-max-microvolt = <1500000>;
 				regulator-always-on;
 				regulator-boot-on;
 			};
 
 			bmem {
-				regulator-min-microvolt = <300000>;
-				regulator-max-microvolt = <3340000>;
+				regulator-min-microvolt = <1800000>;
+				regulator-max-microvolt = <1800000>;
 				regulator-always-on;
 				regulator-boot-on;
 			};
 
-			bio {
-				regulator-min-microvolt = <800000>;
-				regulator-max-microvolt = <3340000>;
+			bio: bio {
+				regulator-min-microvolt = <1800000>;
+				regulator-max-microvolt = <1800000>;
 				regulator-always-on;
 				regulator-boot-on;
 			};
 
-			bperi {
-				regulator-min-microvolt = <800000>;
-				regulator-max-microvolt = <3340000>;
+			bperi: bperi {
+				regulator-min-microvolt = <3300000>;
+				regulator-max-microvolt = <3300000>;
 				regulator-always-on;
 				regulator-boot-on;
 			};
@@ -742,9 +742,11 @@
 &usdhc3 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_usdhc3_1 &pinctrl_usdhc3_reset>;
-        bus-width = <8>;
+	bus-width = <8>;
+	vmmc-supply = <&bperi>;
+	vqmmc-supply = <&bio>;
 	no-1-8-v;
-        non-removable;
+	non-removable;
 	keep-power-in-suspend;
 	status = "okay";
 };
