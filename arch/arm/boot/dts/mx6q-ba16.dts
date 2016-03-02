@@ -261,7 +261,7 @@
 };
 
 &hdmi_video {
-	fsl,phy_reg_vlev = <0x0294>;
+	fsl,phy_reg_vlev = <0x01ad>;
 	fsl,phy_reg_cksymtx = <0x800d>;
 	status = "okay";
 };
