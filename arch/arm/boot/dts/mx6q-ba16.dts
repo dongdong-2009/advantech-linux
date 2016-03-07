@@ -744,7 +744,6 @@
 	pinctrl-0 = <&pinctrl_usdhc3_1 &pinctrl_usdhc3_reset>;
 	bus-width = <8>;
 	vmmc-supply = <&bperi>;
-	vqmmc-supply = <&bio>;
 	no-1-8-v;
 	non-removable;
 	keep-power-in-suspend;
