@@ -70,6 +70,16 @@
 			regulator-max-microvolt = <3300000>;
 			regulator-always-on;
 		};
+
+		reg_lvds: regulator-lvds {
+			compatible = "regulator-fixed";
+			regulator-name = "lvds_ppen";
+			regulator-min-microvolt = <3300000>;
+			regulator-max-microvolt = <3300000>;
+			regulator-boot-on;
+			gpio = <&gpio3 22 GPIO_ACTIVE_HIGH>;
+			enable-active-high;
+		};
 	};
 
 	sound {
@@ -143,6 +153,7 @@
 				     240 241 242 243 244 245 246 247 248 249
 				     250 251 252 253 254 255>;
 		default-brightness-level = <255>;
+		power-supply = <&reg_lvds>;
 		enable-gpios = <&gpio1 0 GPIO_ACTIVE_HIGH>;
 	};
 
