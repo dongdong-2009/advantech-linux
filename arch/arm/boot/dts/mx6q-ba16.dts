@@ -768,7 +768,7 @@
 &sata {
 	fsl,no-spread-spectrum;
 	fsl,transmit-atten-16ths = <12>;
-	fsl,transmit-boost-mdB = <2960>;
+	fsl,transmit-boost-mdB = <3330>;
 	fsl,transmit-level-mV = <1133>;
 	fsl,receive-dpll-mode = <1>;
 	status = "okay";
