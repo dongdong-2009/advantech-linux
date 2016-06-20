@@ -752,7 +752,7 @@
 &usdhc2 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_usdhc2>;
-	cd-gpios = <&gpio1 4 0>;
+	cd-gpios = <&gpio1 4 1>;
 	no-1-8-v;
 	keep-power-in-suspend;
 	enable-sdio-wakeup;
@@ -774,7 +774,7 @@
         pinctrl-names = "default";
         pinctrl-0 = <&pinctrl_usdhc4>;
         bus-width = <8>;
-	cd-gpios = <&gpio6 11 0>;
+	cd-gpios = <&gpio6 11 1>;
         no-1-8-v;
 	keep-power-in-suspend;
 	enable-sdio-wakeup;
