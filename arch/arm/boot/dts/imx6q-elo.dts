@@ -87,7 +87,7 @@
 		compatible = "fsl,imx6q-ba16-sgtl5000",
 			     "fsl,imx-audio-sgtl5000";
 		model = "imx6q-ba16-sgtl5000";
-		cpu-dai = <&ssi1>;
+		ssi-controller = <&ssi1>;
 		audio-codec = <&codec>;
 		audio-routing =
 			"MIC_IN", "Mic Jack",
@@ -719,7 +719,6 @@
 };
 
 &ssi1 {
-	fsl,mode = "i2s-master";
 	status = "okay";
 };
 
