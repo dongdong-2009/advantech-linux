@@ -232,6 +232,10 @@ int da9063_device_init(struct da9063 *da9063, unsigned int irq)
 	if (ret)
 		dev_err(da9063->dev, "Cannot add MFD cells\n");
 
+
+	enable_irq_wake(da9063->chip_irq);
+
+
 	return ret;
 }
 
