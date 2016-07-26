@@ -25,7 +25,10 @@
 #include <linux/reboot.h>
 #include <linux/delay.h>
 #include <linux/regulator/machine.h>
+#include <linux/gpio.h>
+#include "hardware.h"
 
+#define SUS_S3_OUT      IMX_GPIO_NR(4, 11)
 static struct i2c_client *da9063_client;
 
 static int dms_ba16_suspend_pm_cb(struct notifier_block *nb,
@@ -40,7 +43,7 @@ static int dms_ba16_suspend_pm_cb(struct notifier_block *nb,
 		 * i2c_smbus_write_byte_data(dms_ba16_client, <REGISTER>, <VALUE>);
 		 */
 
-
+		gpio_direction_output(SUS_S3_OUT, 0); /*Set SUS_S3 low during suspend*/
 
 		break;
 	case PM_POST_SUSPEND:
@@ -57,7 +60,7 @@ static int dms_ba16_suspend_pm_cb(struct notifier_block *nb,
                 i2c_smbus_write_byte_data(da9063_client,0xA8,0x7d); // VBPERI_A(3.3V)
 
 
-
+		gpio_direction_output(SUS_S3_OUT, 1); /*Set SUS_S3 high during resume*/
 
 		break;
 	default:
@@ -151,6 +154,7 @@ static int platform_i2c_bus_notify(struct notifier_block *nb,
                  i2c_smbus_write_byte_data(da9063_client,0x24,0x1);  /*BIO_CONT let BIO_B off when supsend*/
 
 
+		gpio_direction_output(SUS_S3_OUT, 1); /*Set SUS_S3 high when power on*/
 
 		pm_notifier(dms_ba16_suspend_pm_cb, 0);
 

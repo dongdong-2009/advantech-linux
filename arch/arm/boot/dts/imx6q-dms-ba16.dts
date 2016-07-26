@@ -260,11 +260,13 @@
 	status = "okay";
 };
 
+
 &hdmi_cec {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_hdmi_cec>;
-	status = "okay";
+	status = "disabled";
 };
+
 
 &hdmi_core {
 	ipu_id = <1>;
@@ -471,6 +473,8 @@
 				MX6QDL_PAD_GPIO_0__GPIO1_IO00  0x80000000	/* BLEN_OUT */
 				MX6QDL_PAD_EIM_D22__GPIO3_IO22   0x80000000	/* LVDS_PPEN_OUT */
 				MX6QDL_PAD_KEY_COL2__GPIO4_IO10  0x80000000	/* RTC_INT */
+                        	MX6QDL_PAD_KEY_ROW2__GPIO4_IO11  0x1b0b0 	/*SUS_S3_OUT*/
+
 			>;
 		};
 	};
